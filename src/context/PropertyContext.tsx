@@ -84,7 +84,7 @@ export const PropertyProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setLoading(true);
     try {
       // Check if Supabase is configured
-      if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+      if (!supabase) {
         // Fallback to localStorage if Supabase is not configured
         const savedProperties = localStorage.getItem('primehomes_properties_global');
         if (savedProperties) {
@@ -140,7 +140,7 @@ export const PropertyProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const uploadImage = async (file: File): Promise<string> => {
     try {
       // Check if Supabase is configured
-      if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+      if (!supabase) {
         // Fallback: convert to base64 for local storage
         return new Promise((resolve) => {
           const reader = new FileReader();
